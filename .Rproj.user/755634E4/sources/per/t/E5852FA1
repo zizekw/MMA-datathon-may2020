@@ -1,0 +1,32 @@
+{
+    "id": "E5852FA1",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1591372609518.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "expression": "data_women",
+        "caption": "data_women",
+        "totalObservations": 11616,
+        "displayedObservations": 11616,
+        "variables": 17,
+        "cacheKey": "C12D0C5E",
+        "object": "data_women",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=data_women&cache_key=C12D0C5E&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2482730676494692210,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1591372609518,
+    "read_only": false,
+    "read_only_alternatives": []
+}

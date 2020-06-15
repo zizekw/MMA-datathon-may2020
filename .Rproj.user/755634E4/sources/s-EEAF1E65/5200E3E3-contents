@@ -1,0 +1,37 @@
+---
+title: "EDA"
+author: "Bill Zizek"
+date: "23/05/2020"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Initialization
+
+```{r load packages, message=FALSE}
+library(tidyverse)
+```
+
+
+## Ingest Data
+
+```{r ingest, message=FALSE}
+data <- read_csv("data/Rotman MMA Summer Datathon (men&women olympic).csv")
+```
+
+## Early Look
+
+```{r glimpse}
+glimpse(data)
+```
+
+```{r summary}
+summary(data)
+```
+

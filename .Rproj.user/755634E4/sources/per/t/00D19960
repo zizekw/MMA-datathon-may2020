@@ -1,0 +1,25 @@
+{
+    "id": "00D19960",
+    "path": "~/r-projects/MMA-datathon-may2020/create_rink.R",
+    "project_path": "create_rink.R",
+    "type": "r_source",
+    "hash": "1425580462",
+    "contents": "",
+    "dirty": false,
+    "created": 1591281551326.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "7,33",
+        "scrollLine": "0"
+    },
+    "folds": "7|33|30|0|\n32|33|37|0|\n",
+    "lastKnownWriteTime": 1591281621,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1591282903845,
+    "read_only": false,
+    "read_only_alternatives": []
+}

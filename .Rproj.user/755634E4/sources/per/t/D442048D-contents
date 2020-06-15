@@ -1,0 +1,186 @@
+library(shiny)
+library(shinydashboard)
+library(shinydashboardPlus)
+library(dashboardthemes)
+library(tidyverse)
+library(DT)
+
+# Define UI for application that draws a histogram
+ui <- dashboardPagePlus(
+    dashboardHeader(title = "Rotman Datathon"),
+    dashboardSidebar(
+        sidebarMenu(
+            menuItem("About Us", tabName = "about", icon = icon("dashboard")),
+            menuItem("Data", tabName = "data", icon = icon("th")),
+            menuItem("Shooting Behaviour", tabName = "shots", icon = icon("th"))
+        )
+    ),
+    dashboardBody(
+        shinyDashboardThemes(
+            theme = "boe_website"
+        ),
+        tabItems(
+        tabItem(tabName = "about",
+                flipBox(
+                    id = 1,
+                    main_img = "https://media-exp1.licdn.com/dms/image/C4E0BAQEUb651icxVRA/company-logo_200_200/0?e=1599091200&v=beta&t=RYGKdIt10gNloIrh4HXWKl4w5fACP8c_ZQzz4p2Fphw",
+                    header_img = "https://media-exp1.licdn.com/dms/image/C4E1BAQFWJ3-Y4NP-cw/company-background_10000/0?e=1591308000&v=beta&t=B3DA8aC3DRUlTo2a6Z3Qo_snj_bx28HsqckuzHCUIIY",
+                    front_title = "Rotman Summer Datathon (Team H)",
+                    back_title = "More about Stathletes",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+         sed do eiusmod tempor incididunt ut labore et dolore magna 
+         aliqua.",
+                    back_content = tagList(
+                        column(
+                            width = 12,
+                            align = "center",
+                            "lorem ipsum"
+                        )
+                    )
+                ),
+                tags$br(),
+                widgetUserBox(
+                    title = "Maggie Hu",
+                    subtitle = "Rotman Student",
+                    width = 6,
+                    type = 2,
+                    src = "https://media-exp1.licdn.com/dms/image/C5603AQHWBI3KY8xCuA/profile-displayphoto-shrink_400_400/0?e=1596672000&v=beta&t=kXETofJs8L7Ou-vK2ZPvvXFysjTha4A7rdXBZF7hLFo",
+                    color = "gray",
+                    "Some text here!",
+                    footer = "The footer here!",
+                    collapsible = FALSE
+                ),
+                widgetUserBox(
+                    title = "Grace Lou",
+                    subtitle = "Rotman Student",
+                    width = 6,
+                    type = 2,
+                    src = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+                    color = "gray",
+                    "Some text here!",
+                    footer = "The footer here!",
+                    collapsible = FALSE
+                ),
+                widgetUserBox(
+                    title = "Shirley Zhang",
+                    subtitle = "Rotman Student",
+                    width = 6,
+                    type = 2,
+                    src = "https://adminlte.io/themes/AdminLTE/dist/img/user7-128x128.jpg",
+                    color = "gray",
+                    "Some text here!",
+                    footer = "The footer here!",
+                    collapsible = FALSE
+                ),
+                widgetUserBox(
+                    title = "Bill Zizek",
+                    subtitle = "Rotman Student",
+                    width = 6,
+                    type = 2,
+                    src = "https://media-exp1.licdn.com/dms/image/C4D03AQGY6IKql3vhSg/profile-displayphoto-shrink_400_400/0?e=1596672000&v=beta&t=3mS99_Ecrve2pocgtrGu0In0F3k53pZgFx7X-KwJHow",
+                    color = "gray",
+                    "Some text here!",
+                    footer = "The footer here!",
+                    collapsible = FALSE
+                )
+        ),
+        tabItem(tabName = "data",
+                DTOutput('tbl')
+        ),
+        tabItem(tabName = "shots",
+                box(title = "Plot Options", status = "primary", sliderInput("slider", "Slider input:", 1, 100, 50)), # make this box width 4
+                box(title = "Shot Plot", status = "primary", plotOutput("plot"))) # make this box width 8
+        )
+        )
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+
+    data <- read_csv("data/Rotman MMA Summer Datathon (men&women olympic).csv")
+    
+    # we only want data from the women's team 
+    
+    game_index <- unique(data$game_name)
+    
+    game_index <- game_index[c(1:3,7,9,12:17)]
+    
+    data_women <- data %>% 
+                    filter(., data$game_name %in% game_index)
+    
+    shot_data <- data_women[data_women$event_type == "Shot",]
+    
+    shot_data$goal <- ifelse(shot_data$event_successful == TRUE, 1, 0)
+
+    shot_model <- glm(shot_data$goal ~ shot_data$x_event + shot_data$y_event + shot_data$shot_type, data = shot_data, family = "binomial")
+
+    summary(shot_model)
+
+    shot_data$goal_predictions <- predict(shot_model, shot_data, type = "response")
+    
+    # table time
+    output$tbl = renderDT(
+        # shot_data, options = list(lengthChange = FALSE)
+        datatable(
+            data_women,
+            rownames = FALSE,
+            extensions = c("Buttons", "FixedColumns", "FixedHeader", "Scroller"), 
+            options = list(
+                # scroller = TRUE,
+                # scrollX = TRUE,
+                # autoWidth = TRUE,
+                # scrollY = "750px",
+                # fixedHeader=TRUE,
+                # class='cell-border stripe',
+                scrollX = TRUE,
+                dom = 'Blrtip',
+                buttons = c('colvis', 'copy', 'csv', 'excel', 'print'),
+                lengthMenu = c(10, 25, 50, 100),
+                pageLength = 10
+            )
+        )
+    )
+    
+    output$plot <- renderPlot({
+        
+        img <- png::readPNG("images/ozone.png")
+        
+        ggplot(data = data_women %>% filter(event_type == "Shot"), aes(x = y_event, y = x_event)) + # x and y are location on rink
+            
+            #  plot rink
+            annotation_raster(img, xmin = 0, xmax = 85, ymin = 100, ymax = 200) +
+            scale_x_continuous(limits = c(0,85), expand = c(0,0)) +
+            scale_y_continuous(limits = c(100,200), expand = c(0,0)) + # base amount should work by here
+            # geom_point() +
+            #  add density
+            stat_density_2d(geom = "polygon", aes(alpha = stat(level)), fill = "royalblue4", alpha = 0.2, col = "white", bins = 8) +
+            
+            theme(axis.title.x = element_blank(),
+                  axis.text.x = element_blank(),
+                  axis.ticks.x =element_blank(),
+                  axis.title.y = element_blank(),
+                  axis.text.y = element_blank(),
+                  axis.ticks.y = element_blank(),
+                  plot.title = element_text(hjust = 0.5, size = 17),
+                  legend.position ="none") +
+            
+            ggtitle("Offensive Zone Shot Data") +
+            # subtitle with team name focused on + game
+            
+            coord_fixed(xlim = c(0, 85), ylim = c(100, 200)) +
+            
+            # geom_rect(aes(xmin = 10, xmax = 75, ymin = 103, ymax = 110), colour = "black", size = 1, fill = "lightblue") +
+            # annotate("text", label = "Expected Shooting %: 6.3%", x = 42.5, y = 107, size = 5) +
+            
+            geom_segment(data = data.frame(x = c(38.25, 38.25, 20.75, 20.75, 64.25, 64.25),
+                                           y = c(188, 188, 168.5, 153.5, 153.5, 168.5),
+                                           xend = c(46.75, 20.75, 20.75, 64.25, 64.25, 46.75),
+                                           yend = c(188, 168.5, 153.5, 153.5, 168.5, 188)),
+                         aes(x = x, y = y, xend = xend, yend = yend),
+                         size = 1, col = "midnightblue", linetype = 2)
+    })
+    
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)

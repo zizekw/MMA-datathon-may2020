@@ -1,0 +1,23 @@
+"0","data <- read_csv(""data/Rotman MMA Summer Datathon (men&women olympic).csv"")
+"
+"2","Parsed with column specification:
+cols(
+  game_date = [31mcol_character()[39m,
+  game_name = [31mcol_character()[39m,
+  team_name = [31mcol_character()[39m,
+  opp_team_name = [31mcol_character()[39m,
+  team_venue = [31mcol_character()[39m,
+  player_name = [31mcol_character()[39m,
+  period = [32mcol_double()[39m,
+  situation_type = [31mcol_character()[39m,
+  event_type = [31mcol_character()[39m,
+  event_successful = [33mcol_logical()[39m,
+  event_time = [32mcol_double()[39m,
+  x_event = [32mcol_double()[39m,
+  y_event = [32mcol_double()[39m,
+  receiver_name = [31mcol_character()[39m,
+  receiver_x = [32mcol_double()[39m,
+  receiver_y = [32mcol_double()[39m,
+  shot_type = [31mcol_character()[39m
+)
+"
