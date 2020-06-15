@@ -176,11 +176,11 @@ ui <- dashboardPagePlus(
                                     collapsible = FALSE
                                 ),
                                 widgetUserBox(
-                                    title = "Brigette Lacquette",
-                                    subtitle = "Passer + Takeaway Specialist + Faceoff Specialist",
+                                    title = "Brianne Jenner",
+                                    subtitle = "Takeaway Specialist + Faceoff Specialist",
                                     width = 6,
                                     type = 2,
-                                    src = "https://lscluster.hockeytech.com/download.php?client_code=hockeycanada&file_path=media/da143aa1ba9516f35815a107458811b7.jpg",
+                                    src = "https://lscluster.hockeytech.com/download.php?client_code=hockeycanada&file_path=media/205fa34c3041c4a53ee8d3bb9a410c52.jpg",
                                     color = "gray",
                                     "Brigette played in all 10 games and is one of the top faceoff and takeaway specialists. She also has an exceptional passing percentage to top scorers as well as the team in general.",
                                     # footer = "foo",
@@ -202,7 +202,7 @@ ui <- dashboardPagePlus(
                 fluidRow(width = 12,
                          tabBox(title = "Plot Options",
                                 tabPanel("Player(s)", checkboxGroupInput("player_solo", label = h3("Select Players to Include"), 
-                                                                       choices = c("Marie-Philip Poulin", "Melodie Daoust", "Jamie Lee Rattray", "Brigette Lacquette", "Erin Ambrose"),
+                                                                       choices = c("Marie-Philip Poulin", "Melodie Daoust", "Jamie Lee Rattray", "Brianne Jenner", "Erin Ambrose"),
                                                                        selected = c("Marie-Philip Poulin", "Melodie Daoust", "Jamie Lee Rattray"))),
                                 tabPanel("Game(s)", 
                                          checkboxGroupInput("game_solo", label = h3("Select Games to Include"), 

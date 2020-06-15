@@ -3,22 +3,22 @@
     "path": "~/r-projects/MMA-datathon-may2020/app.R",
     "project_path": "app.R",
     "type": "r_source",
-    "hash": "3925862029",
+    "hash": "1370497873",
     "contents": "",
     "dirty": false,
     "created": 1590259038301.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
-        "cursorPosition": "15,29",
-        "scrollLine": "0"
+        "cursorPosition": "179,48",
+        "scrollLine": "160"
     },
     "folds": "",
-    "lastKnownWriteTime": 1592263260,
+    "lastKnownWriteTime": 1592265236,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1592263260959,
+    "last_content_update": 1592265236790,
     "read_only": false,
     "read_only_alternatives": []
 }
