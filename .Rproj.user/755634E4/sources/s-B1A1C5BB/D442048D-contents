@@ -13,7 +13,7 @@ ui <- dashboardPagePlus(
     dashboardSidebar(
         sidebarMenu(
             menuItem("About Us", tabName = "about", icon = icon("address-card")),
-            menuItem("Data", tabName = "data", icon = icon("th")),
+            menuItem("Sample Data", tabName = "data", icon = icon("th")),
             menuItem("Team Shooting Behaviour", tabName = "shots", icon = icon("dashboard")),
             menuItem("Top Performers", tabName = "top", icon = icon("chart-line")),
             menuItem("Roster Recommendations", tabName = "recs", icon = icon("hockey-puck")),
@@ -68,8 +68,8 @@ ui <- dashboardPagePlus(
                     collapsible = FALSE
                 ),
                 widgetUserBox(
-                    title = "Shirley Zhang (MMA)",
-                    subtitle = "Rotman Student",
+                    title = "Shirley Zhang",
+                    subtitle = "Rotman Student (MMA)",
                     width = 6,
                     type = 2,
                     src = "https://media-exp1.licdn.com/dms/image/C4E03AQFNa9ByS0KtKg/profile-displayphoto-shrink_400_400/0?e=1597276800&v=beta&t=UEnQETGprLbMaTcI6xCYIpkH9AjVvYnFa-u0uYWEmSw",
@@ -91,6 +91,9 @@ ui <- dashboardPagePlus(
                 )
         ),
         tabItem(tabName = "data",
+                tags$h1("Sample Data"),
+                "Note: This is not the full dataset but merely an example of the structure. The full dataset contains many thousands of rows and is owned by Stathletes.",
+                tags$br(),
                 DTOutput('tbl')
         ),
         tabItem(tabName = "shots",
@@ -242,6 +245,8 @@ server <- function(input, output) {
     
     data <- read_csv("data/Rotman MMA Summer Datathon (men&women olympic).csv")
     
+    sample_data <- read_csv("data/sample_data.csv")
+    
     # we only want data from the women's team 
     
     game_index <- unique(data$game_name)
@@ -265,7 +270,7 @@ server <- function(input, output) {
     output$tbl = renderDT(
         # shot_data, options = list(lengthChange = FALSE)
         datatable(
-            data_women,
+            sample_data,
             rownames = FALSE,
             extensions = c("Buttons", "FixedColumns", "FixedHeader", "Scroller"), 
             options = list(
