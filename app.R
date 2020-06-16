@@ -6,6 +6,7 @@ library(tidyverse)
 library(DT)
 library(plotly)
 library(shinymanager)
+library(readr)
 
 inactivity <- "function idleTimer() {
 var t = setTimeout(logout, 120000);
@@ -27,10 +28,7 @@ t = setTimeout(logout, 120000);  // time is in milliseconds (1000 is 1 second)
 idleTimer();"
 
 # data.frame with credentials info
-credentials <- data.frame(
-    user = c("admin", "rotman"),
-    password = c("admin", "data"),
-    # comment = c("alsace", "auvergne", "bretagne"), %>% 
+credentials <- data.frame(read_csv("data/credentials.csv"),
     stringsAsFactors = FALSE
 )
 
