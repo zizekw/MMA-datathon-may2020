@@ -13,7 +13,7 @@ Checkout the hosted dashboard [here](https://bit.ly/rotman-datathon) and modifie
 ## Screenshots
 
 Landing page:
-![lifecycle](images/frontpage_dashboard.png)
+![lifecycle](../images/frontpage_dashboard.png)
 
 Dynamic shot heat map plots:
-![lifecycle](images/shot_map.png)
+![lifecycle](../images/shot_map.png)
