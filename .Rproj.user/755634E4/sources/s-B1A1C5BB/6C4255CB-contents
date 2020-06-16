@@ -9,3 +9,11 @@ Welcome to our dashboard app! We are a group of students at the Rotman School of
 This dashboard serves to model key performance metrics and visualize performance behaviour to better inform offensive strategy. We will recommend 5 outstanding players: 3 goal scorers and 2 passers where 2 of the aforementioned players will be a faceoff specialist and one being a takeaway specialist.
 
 Checkout the hosted dashboard [here](https://bit.ly/rotman-datathon) and modified presentation [here]().
+
+## Screenshots
+
+Landing page:
+![lifecycle](images/frontpage_dashboard.png)
+
+Dynamic shot heat map plots:
+![lifecycle](images/shot_map.png)
