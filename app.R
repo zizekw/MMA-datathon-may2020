@@ -5,10 +5,38 @@ library(dashboardthemes)
 library(tidyverse)
 library(DT)
 library(plotly)
+library(shinymanager)
 
+inactivity <- "function idleTimer() {
+var t = setTimeout(logout, 120000);
+window.onmousemove = resetTimer; // catches mouse movements
+window.onmousedown = resetTimer; // catches mouse movements
+window.onclick = resetTimer;     // catches mouse clicks
+window.onscroll = resetTimer;    // catches scrolling
+window.onkeypress = resetTimer;  //catches keyboard actions
+
+function logout() {
+window.close();  //close the window
+}
+
+function resetTimer() {
+clearTimeout(t);
+t = setTimeout(logout, 120000);  // time is in milliseconds (1000 is 1 second)
+}
+}
+idleTimer();"
+
+# data.frame with credentials info
+credentials <- data.frame(
+    user = c("admin", "rotman"),
+    password = c("admin", "data"),
+    # comment = c("alsace", "auvergne", "bretagne"), %>% 
+    stringsAsFactors = FALSE
+)
 
 # Define UI for application that draws a histogram
-ui <- dashboardPagePlus(
+ui <- secure_app(head_auth = tags$script(inactivity),
+    dashboardPagePlus(
     dashboardHeader(title = "Rotman Datathon"),
     dashboardSidebar(
         sidebarMenu(
@@ -237,9 +265,16 @@ ui <- dashboardPagePlus(
         )
         )
 )
+)
 
 # Define server logic required to draw a histogram
-server <- function(input, output) {
+server <- function(input, output, session) {
+    
+    result_auth <- secure_server(check_credentials = check_credentials(credentials))
+    
+    output$res_auth <- renderPrint({
+        reactiveValuesToList(result_auth)
+    })
     
     top_players <- c("Marie-Philip Poulin", "Melodie Daoust", "Jamie Lee Rattray", "Brigette Lacquette", "Erin Ambrose")
     
