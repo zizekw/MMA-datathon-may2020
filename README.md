@@ -13,7 +13,7 @@ Checkout the hosted dashboard [here](https://bit.ly/rotman-datathon) and modifie
 ## Screenshots
 
 Landing page:
-![lifecycle](../images/frontpage_dashboard.png)
+![lifecycle](https://github.com/zizekw/MMA-datathon-may2020/blob/master/images/frontpage_dashboard.PNG)
 
 Dynamic shot heat map plots:
-![lifecycle](../images/shot_map.png)
+![lifecycle](https://github.com/zizekw/MMA-datathon-may2020/blob/master/images/shot_map.PNG)
