@@ -54,8 +54,8 @@ ui <- secure_app(head_auth = tags$script(inactivity),
         tabItem(tabName = "about",
                 flipBox(
                     id = 1,
-                    main_img = "https://pbs.twimg.com/profile_images/976150368382992384/1xzt6I-H_400x400.jpg",
-                    header_img = "https://media-exp1.licdn.com/dms/image/C4E1BAQFWJ3-Y4NP-cw/company-background_10000/0?e=1592352000&v=beta&t=VvspnpAouqETvOiaUDJOi9G-fUWMv-8W-8_KRCoVFgY",
+                    main_img = "https://github.com/zizekw/MMA-datathon-may2020/blob/master/images/rotman-icon.png?raw=true",
+                    header_img = "https://github.com/zizekw/MMA-datathon-may2020/blob/master/images/rotman-banner.jpg?raw=true",
                     front_title = "Rotman Summer Datathon (Team H)",
                     back_title = "More about Stathletes",
                     "Welcome to our dashboard app! We are a group of students at the Rotman School of Management at the University of Toronto. We're participating in the first ever Rotman Summer Datathon as Team H. Thanks to our industry partner Stathletes (click `More` below), we've been given a dataset on the 2018 Olympic Hockey tournament. Team H intends to specifically analyze the Canadian Women's Hockey Team data to identify top performers in the 2018 tournament to help prepare for the next upcoming tournament. This dashboard serves to model key performance metrics and visualize performance behaviour to better inform offensive strategy. We will recommend 5 outstanding players: 3 goal scorers and 2 passers where 2 of the aforementioned players will be a faceoff specialist and one being a takeaway specialist.",
@@ -208,7 +208,7 @@ ui <- secure_app(head_auth = tags$script(inactivity),
                                     type = 2,
                                     src = "https://lscluster.hockeytech.com/download.php?client_code=hockeycanada&file_path=media/205fa34c3041c4a53ee8d3bb9a410c52.jpg",
                                     color = "gray",
-                                    "Brigette played in all 10 games and is one of the top faceoff and takeaway specialists. She also has an exceptional passing percentage to top scorers as well as the team in general.",
+                                    "Brianne the top faceoff and takeaway specialist. She also has an exceptional passing percentage to top scorers as well as the team in general.",
                                     # footer = "foo",
                                     collapsible = FALSE
                                 ),
@@ -258,7 +258,7 @@ ui <- secure_app(head_auth = tags$script(inactivity),
                          )),
                 ),
         tabItem(tabName = "supp",
-                "lorem ipsum"
+                imageOutput("image", width = , height = )
         )
         )
         )
@@ -446,6 +446,12 @@ server <- function(input, output, session) {
     output$faceoff <- renderTable({tibble(Rank = c(1:7), Player = c("Brianne Jenner", "Brigette Lacquette", "Blayre Turnbull", "Emily Clark", "Ann-Sophie Bettez", "Erin Ambrose", "Halli Krzyzaniak"))})
     
     output$takeaway <- renderTable({tibble(Rank = c(1:7), Player = c("Marie-Philip Poulin", "Brianne Jenner", "Renata Fast", "Laura Fortino", "Natalie Spooner", "Jocelyne Larocque", "Brigette Lacquette"))})
+    
+    output$image <- renderImage({
+        list(src = "./images/team_dynamics.PNG",
+             alt = "This is alternate text"
+        )
+    }, deleteFile = TRUE)
     
 }
 
