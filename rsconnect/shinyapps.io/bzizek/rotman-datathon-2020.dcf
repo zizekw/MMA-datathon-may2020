@@ -5,8 +5,8 @@ account: bzizek
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2463494
-bundleId: 3278817
+bundleId: 3283172
 url: https://bzizek.shinyapps.io/rotman-datathon-2020/
-when: 1592334840.73106
+when: 1592410949.46434
 asMultiple: FALSE
 asStatic: FALSE

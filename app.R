@@ -258,7 +258,12 @@ ui <- secure_app(head_auth = tags$script(inactivity),
                          )),
                 ),
         tabItem(tabName = "supp",
-                imageOutput("image", width = , height = )
+                imageOutput("image"),
+                tags$br(),
+                tags$br(),
+                tags$br(),
+                tags$br(),
+                imageOutput("image2")
         )
         )
         )
@@ -451,7 +456,13 @@ server <- function(input, output, session) {
         list(src = "./images/team_dynamics.PNG",
              alt = "This is alternate text"
         )
-    })
+    }, deleteFile = FALSE)
+    
+    output$image2 <- renderImage({
+        list(src = "./images/forward.PNG",
+             alt = "This is alternate text"
+        )
+    }, deleteFile = FALSE)
     
 }
 
