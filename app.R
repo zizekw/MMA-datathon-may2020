@@ -258,7 +258,7 @@ ui <- secure_app(head_auth = tags$script(inactivity),
                          )),
                 ),
         tabItem(tabName = "supp",
-                imageOutput("image")
+                imageOutput("image", width = , height = )
         )
         )
         )
@@ -451,7 +451,7 @@ server <- function(input, output, session) {
         list(src = "./images/team_dynamics.PNG",
              alt = "This is alternate text"
         )
-    }, deleteFile = TRUE)
+    })
     
 }
 
